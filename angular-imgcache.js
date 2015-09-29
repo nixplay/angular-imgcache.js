@@ -99,6 +99,12 @@ angular.module('ImgCache', [])
 
             });
 
+            attrs.$observe('icThumbBg', function(src) {
+
+                loadImg('bg', el, src);
+
+            });
+
         }
     };
 }]);
