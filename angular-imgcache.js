@@ -93,6 +93,12 @@ angular.module('ImgCache', [])
 
             });
 
+            attrs.$observe('icThumbSrc', function(src) {
+
+                loadImg('src', el, src);
+
+            });
+
             attrs.$observe('icBg', function(src) {
 
                 loadImg('bg', el, src);
