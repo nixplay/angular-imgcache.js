@@ -62,6 +62,7 @@ angular.module('ImgCache', [])
                     if(type === 'bg') {
                         el.css({'background-image': 'url(' + dest + ')' });
                     } else {
+                        el.css('height', 'initial');
                         el.attr('src', dest);
                     }
                 });
