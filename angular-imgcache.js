@@ -35,7 +35,7 @@ angular.module('ImgCache', [])
 
 })
 
-.directive('imgCache', ['ImgCache', function() {
+.directive('imgCache', ['ImgCache', function(imgCache) {
 
     return {
         restrict: 'A',
@@ -57,8 +57,8 @@ angular.module('ImgCache', [])
                     }
                 }
 
-                ImgCache.getCachedFileURL(src, function(src, dest) {
-
+                ImgCache.getCachedFileURL(src, function(src, orientation, dest) {
+                    el.attr('orientation', orientation);
                     if(type === 'bg') {
                         el.css({'background-image': 'url(' + dest + ')' });
                     } else {
