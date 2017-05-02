@@ -88,6 +88,7 @@ angular.module('ImgCache', [])
                             }, function(err) {
                                 el.parent().find("label").css("display", "none");
                                 el.attr('src', "img/missing-image.png");
+                                scope.$emit('photo-deleted', src);
                             });
                         }
                     });
