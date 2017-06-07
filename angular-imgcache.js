@@ -59,10 +59,11 @@ angular.module('ImgCache', [])
 
                 ImgCache.getCachedFileURL(src, function(src, orientation, dest) {
                     el.attr('orientation', orientation);
+                    scope.$emit('orientation', orientation);
+
                     if(type === 'bg') {
                         el.css({'background-image': 'url(' + dest + ')' });
                     } else {
-                        el.css('height', 'initial');
                         el.attr('src', dest);
                     }
                 });
@@ -77,18 +78,13 @@ angular.module('ImgCache', [])
                     ImgCache.isCached(src, function(path, success) {
 
                         if (success) {
-                            el.parent().css('height', 'initial');
-                            el.attr('isok', true);
                             setImg(type, el, src);
                         } else {
                             ImgCache.cacheFile(src, function() {
-                                el.parent().css('height', 'initial');
-                                el.attr('isok', true);
                                 setImg(type, el, src);
                             }, function(err) {
                                 el.parent().find("label").css("display", "none");
-                                el.attr('src', "img/missing-image.png");
-                                scope.$emit('photo-deleted', src);
+                                scope.$emit('photo-deleted', src, el);
                             });
                         }
                     });
