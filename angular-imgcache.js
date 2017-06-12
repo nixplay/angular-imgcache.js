@@ -59,7 +59,7 @@ angular.module('ImgCache', [])
 
                 ImgCache.getCachedFileURL(src, function(src, orientation, dest) {
                     el.attr('orientation', orientation);
-                    scope.$emit('orientation', orientation);
+                    scope.$emit('orientation', orientation, el);
 
                     if(type === 'bg') {
                         el.css({'background-image': 'url(' + dest + ')' });
